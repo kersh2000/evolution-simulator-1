@@ -24,7 +24,7 @@ python -m venv venv
 ```
 
 ### Activating the Virtual Environment
-Before installing the dependencies, you need to activate the virtual environment. The activation command differs based on the operating system:
+Before installing the dependencies, you need to activate the virtual environment:
 
 - *Windows*
 ```
