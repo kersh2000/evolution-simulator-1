@@ -1,1 +1,13 @@
+# Common Packages and Library Installations
 */node_modules
+*/*.env
+*/venv
+
+# Common Python Entries
+*__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.Python
+*/db.sqlite3
+*.ipynb_checkpoints
