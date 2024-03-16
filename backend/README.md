@@ -33,7 +33,7 @@ Before installing the dependencies, you need to activate the virtual environment
 
 - *Linux*
 ```
-source venv/bin/activate
+source venv/Scripts/activate
 ```
 You should now see (venv) prefixed to your command prompt, indicating that the virtual environment is active.
 
