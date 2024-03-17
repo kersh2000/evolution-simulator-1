@@ -2,11 +2,11 @@
 
 ## **Project Checklist**:
 
-- [ ] Set up virtual environment
-- [ ] Install dependencies
-- [ ] Create React framework
-- [ ] Create API
-- [ ] Create branches
+- [x] Set up virtual environment
+- [x] Install dependencies
+- [x] Create React framework
+- [x] Create API
+- [x] Create branches
 - [ ] Create DB
 - [ ] Create seed file for DB
 - [ ] Create basic API and DB test

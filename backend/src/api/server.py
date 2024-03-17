@@ -7,8 +7,8 @@ app = FastAPI()
 @app.get("/")
 async def read_root():
     # Construct the absolute path
-    home_path = os.path.join(os.path.dirname(__file__), 'templates', 'home.html')
-    return FileResponse(home_path)
+    path = os.path.join(os.path.dirname(__file__), 'templates', 'home.html')
+    return FileResponse(path)
 
 if __name__ == "__main__":
     import uvicorn
