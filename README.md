@@ -7,8 +7,8 @@
 - [x] Create React framework
 - [x] Create API
 - [x] Create branches
-- [ ] Create DB
-- [ ] Create seed file for DB
+- [x] Create DB
+- [x] Create seed file for DB
 - [ ] Create basic API and DB test
 - [ ] Create future tests
 - [ ] Create middleware
