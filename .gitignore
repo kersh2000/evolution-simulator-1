@@ -11,3 +11,6 @@ __pycache__/
 *.Python
 db.sqlite3
 *.ipynb_checkpoints
+
+# Database and SQLite
+*.db
