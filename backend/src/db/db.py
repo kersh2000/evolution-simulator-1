@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 # Database connection will fail if the script is not being ran in the parent directory (/backend)
-load_dotenv('../../app/.env')
+load_dotenv('.env')
 
 database_hostname = os.getenv('DB_HOSTNAME')
 database_name = os.getenv('DB_NAME')
