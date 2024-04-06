@@ -20,6 +20,3 @@ def seed_db():
             db.add(db_user)
     
         db.commit()
-
-if __name__ == "__main__":
-    seed_db()

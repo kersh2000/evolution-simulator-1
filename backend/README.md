@@ -64,3 +64,16 @@ deactivate
 ```
 
 This command will return you to the global Python environment.
+
+
+## Running Server
+
+Here contains the instructions to run the server locally on your machine. Ensure that both your virtual environment is set correctly (see above for details) and you are in the backend directory (/*project_name*/backend).
+
+### Development Mode
+In order to run the server in development mode, which allows the automatic reload of the server, run the following command:
+```
+uvicorn .src.api.server:app --reload
+```
+
+To stop the server from running, press `Ctrl+C` in the terminal (or optionally kill the terminal).
