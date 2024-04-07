@@ -1,4 +1,4 @@
-from .user import UserBase, UserLoginBase, UserResponse
+from .user import UserBase, UserLoginBase, UserResponse, UserChange
 from .auth import Token, TokenData
 from .dogma import DogmaBase, DogmaCreation, DogmaResponse
 from .environment import EnvironmentBase, EnvironmentCreation, EnvironmentResponse, EnvironmentUpdate

@@ -18,3 +18,10 @@ class UserResponse(BaseModel):
 class UserLoginBase(BaseModel):
     username: str
     password: str
+
+class UserChange(BaseModel):
+    email: EmailStr
+    username: str
+    old_password: str
+    new_password: str
+    is_private: bool
