@@ -27,7 +27,7 @@ def delete_user(db: Session = Depends(get_db), current_user: schemas.UserRespons
     db.delete(current_user)
     db.commit()
 
-@router.put("/{id}", response_model=schemas.UserResponse)
+@router.put("/", response_model=schemas.UserResponse)
 def update_user(user: schemas.UserChange, current_user: models.User = Depends(middleware.get_current_user), db: Session = Depends(get_db)):
     query = db.query(models.User).filter(models.User.id == current_user.id)
     existing_user = query.first()
@@ -40,7 +40,7 @@ def update_user(user: schemas.UserChange, current_user: models.User = Depends(mi
         "username": user.username,
         "password": user.new_password,
         "is_private": user.is_private
-    }) 
+    }, synchronize_session=False) 
     db.commit()
 
     updated_user = query.first()
