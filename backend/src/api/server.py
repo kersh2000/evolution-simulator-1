@@ -20,6 +20,7 @@ app.include_router(routers.userRouter)
 app.include_router(routers.simulationRouter)
 app.include_router(routers.blockRouter)
 app.include_router(routers.environmentRouter)
+app.include_router(routers.dogmaRouter)
 
 @app.get("/")
 async def read_root():
