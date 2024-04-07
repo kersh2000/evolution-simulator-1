@@ -2,17 +2,13 @@ import sys
 sys.dont_write_bytecode = True
 
 import os
-from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 
 from ..db.models import models
 from ..db.db import engine
-
+from ..config import server_port
 from .routers import routers
-
-
-load_dotenv('.env')
 
 # Creates all of the models for our database
 models.Base.metadata.create_all(bind=engine)
@@ -32,5 +28,4 @@ async def read_root():
 
 if __name__ == "__main__":
     import uvicorn
-    port = int(os.getenv('SERVER_PORT', 8000))  # Default to port 8000 if not specified
-    uvicorn.run(app, host="localhost", port=port)
+    uvicorn.run(app, host="localhost", port=server_port)
