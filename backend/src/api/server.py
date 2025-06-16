@@ -8,8 +8,6 @@ from fastapi.responses import FileResponse
 
 # from ..db.models import models
 # from ..db.db import engine
-from ..config import server_port
-from .routers import routers
 
 from ..code import simulation
 from ..code.classes.block import Block
@@ -28,13 +26,6 @@ app.add_middleware(
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
 )
-
-app.include_router(routers.authRouter)
-app.include_router(routers.userRouter)
-app.include_router(routers.simulationRouter)
-app.include_router(routers.blockRouter)
-app.include_router(routers.environmentRouter)
-app.include_router(routers.dogmaRouter)
 
 @app.get("/")
 async def read_root():
@@ -70,4 +61,4 @@ async def step(num: int, env: Dict):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="localhost", port=server_port)
+    uvicorn.run(app, host="localhost", port=8000)
