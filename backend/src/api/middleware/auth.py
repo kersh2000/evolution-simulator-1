@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
-from .config import jwt_secret, jwt_algorithm, jwt_expire_mins
+from ...config import jwt_secret, jwt_algorithm, jwt_expire_mins
 from ..schemas import schemas
 
 def create_access_token(data: dict):

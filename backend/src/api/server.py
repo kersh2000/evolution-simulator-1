@@ -1,28 +1,40 @@
 import sys
+from typing import Dict
 sys.dont_write_bytecode = True
 
 import os
-from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 
-from ..db.models import models
-from ..db.db import engine
-
+# from ..db.models import models
+# from ..db.db import engine
+from ..config import server_port
 from .routers import routers
 
-
-load_dotenv('.env')
+from ..code import simulation
+from ..code.classes.block import Block
+from fastapi.middleware.cors import CORSMiddleware
 
 # Creates all of the models for our database
-models.Base.metadata.create_all(bind=engine)
+# models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+# Add CORSMiddleware to the application
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 app.include_router(routers.authRouter)
 app.include_router(routers.userRouter)
 app.include_router(routers.simulationRouter)
 app.include_router(routers.blockRouter)
+app.include_router(routers.environmentRouter)
+app.include_router(routers.dogmaRouter)
 
 @app.get("/")
 async def read_root():
@@ -30,7 +42,32 @@ async def read_root():
     path = os.path.join(os.path.dirname(__file__), 'templates', 'home.html')
     return FileResponse(path)
 
+@app.get("/code")
+async def get_env():
+    simulation.begining()
+    return {
+        "env": simulation.env
+    }
+
+@app.post("/step")
+async def step(env: Dict):
+    simulation.setup(env["env"])
+    simulation.step()
+    return {
+        "env": simulation.env,
+        "total_count": simulation.total_concs
+    }
+
+@app.post("/step/{num}")
+async def step(num: int, env: Dict):
+    simulation.setup(env["env"])
+    for step in range(num):
+        simulation.step()
+    return {
+        "env": simulation.env,
+        "total_count": simulation.total_concs
+    }
+
 if __name__ == "__main__":
     import uvicorn
-    port = int(os.getenv('SERVER_PORT', 8000))  # Default to port 8000 if not specified
-    uvicorn.run(app, host="localhost", port=port)
+    uvicorn.run(app, host="localhost", port=server_port)

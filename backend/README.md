@@ -73,7 +73,7 @@ Here contains the instructions to run the server locally on your machine. Ensure
 ### Development Mode
 In order to run the server in development mode, which allows the automatic reload of the server, run the following command:
 ```
-uvicorn .src.api.server:app --reload
+uvicorn src.api.server:app --reload
 ```
 
 To stop the server from running, press `Ctrl+C` in the terminal (or optionally kill the terminal).

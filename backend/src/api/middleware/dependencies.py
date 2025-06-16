@@ -40,3 +40,25 @@ def get_current_block(id: int, db: Session = Depends(get_db), current_user: sche
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not authorized to access this block.")
 
     return block
+
+def get_current_environment(id: int, db: Session = Depends(get_db), current_user: schemas.UserResponse = Depends(get_current_user)) -> models.Environment:
+    environment = db.query(models.Environment).filter(models.Environment.id == id).first()
+
+    if not environment:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Environment not found.")
+    
+    if environment.is_private and environment.owner_id != current_user.id:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not authorized to access this environment.")
+
+    return environment
+
+def get_current_dogma(id: int, db: Session = Depends(get_db), current_user: schemas.UserResponse = Depends(get_current_user)) -> models.Dogma:
+    dogma = db.query(models.Dogma).filter(models.Dogma.id == id).first()
+
+    if not dogma:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Dogma not found.")
+    
+    if dogma.is_private and dogma.owner_id != current_user.id:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not authorized to access this dogma.")
+
+    return dogma
